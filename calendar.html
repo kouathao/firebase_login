@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cal</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAw4J59iiiWaml6AA6tP9dyGM1jS4YH36A",
+            authDomain: "fir-calc-46a37.firebaseapp.com",
+            databaseURL: "https://fir-calc-46a37.firebaseio.com",
+            storageBucket: "fir-calc-46a37.appspot.com",
+            messagingSenderId: "622728450894"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <style media="screen" type="text/css">
+        body {
+            padding-top: 20px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <button onclick="logout()">Logout</button>
+            </div>
+        </div>
+        <div id="calendar"></div>
+    </div>
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="addModalLabel">New Entry</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="addEventoForm" class="form-horizontal">
+                      <div class="form-group">
+                          <div class="col-md-12">
+                              <label for="time" class="control-label">Time</label>
+                              <input type="text" name="time" class="form-control">
+                          </div>
+                      </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label for="event" class="control-label">Event</label>
+                                <textarea name="event" rows="2" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label for="data" class="control-label">Data</label>
+                                <input type="date" name="data" class="form-control">
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closeFormAdd" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="reset" id="resetFormAdd" class="btn btn-warning" value="Clear">
+                    <input type="submit" onclick="saveData()" class="btn btn-primary" value="Save"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="editModalLabel">Edit Event</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="editEventoForm" class="form-horizontal">
+                      <input type="hidden" name="key">
+                      <div class="form-group">
+                          <div class="col-md-12">
+                              <label for="time" class="control-label">Time</label>
+                              <input type="text" name="time" class="form-control" value="">
+                          </div>
+                      </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label for="event" class="control-label">Event</label>
+                                <textarea name="event" form="editEventoForm" rows="2" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label for="data" class="control-label">Date</label>
+                                <input type="date" name="data" class="form-control" value="">
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="deleteData()" class="btn btn-danger pull-left" data-dismiss="modal">Delete</button>
+                    <button type="button" id="closeFormEdit" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <input type="reset" id="resetFormEdit" class="btn btn-warning" value="Clear">
+                    <input type="submit" onclick="updateData()" class="btn btn-primary" value="Save"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="calendar.js"></script>
+</body>
+
+</html>

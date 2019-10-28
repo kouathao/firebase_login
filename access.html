@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.7/css/all.css"
+    />
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- Compiled and minified JavaScript -->
+    <title>Firebase Login</title>
+  </head>
+  <body>
+      <nav>
+          <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">Firebase Login</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"
+              ><i class="fas fa-bars"></i
+            ></a>
+            <ul class="right hide-on-med-and-down">
+              <li id="welcomeMessage"></li>
+              <li><a id="navLogin" href="#"></a></li>
+              <li>
+                <button
+                  class="btn btn-small waves-effect indigo"
+                  id="signInToggle"
+                ></button>
+              </li>
+            </ul>
+          </div>
+        </nav>
+    <!-- nav start -->
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="sass.html">Sass</a></li>
+      <li><a href="badges.html">Components</a></li>
+      <li><a href="collapsible.html">Javascript</a></li>
+      <li><a href="#">Login</a></li>
+    </ul>
+    <!-- nav  -->
+
+    <!-- Main start  -->
+    <div class="section"></div>
+    <main>
+      <center>
+        <h1> Welcome User</h1>
+
+      <div class="section"></div>
+      <div class="section"></div>
+    </main>
+
+    <!-- javascript cdn  -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script> -->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyAw4J59iiiWaml6AA6tP9dyGM1jS4YH36A",
+        authDomain: "fir-calc-46a37.firebaseapp.com",
+        databaseURL: "https://fir-calc-46a37.firebaseio.com",
+        projectId: "fir-calc-46a37",
+        storageBucket: "fir-calc-46a37.appspot.com",
+        messagingSenderId: "622728450894",
+        appId: "1:622728450894:web:5e19f19e44f4b0467b441f",
+        measurementId: "G-MX5HQFGHG3"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="main.js"></script>
+  </body>
+</html>
