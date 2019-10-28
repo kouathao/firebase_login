@@ -24,7 +24,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     // No user is signed in.
     welcomeMessageId.text("Please Sign In");
     console.log("user not signed in");
-    signInandSignOutBtn.text("Sign In");
+    signInandSignOutBtn.hide();
   }
 });
 
@@ -40,7 +40,13 @@ function login() {
       var errorCode = error.code;
       var errorMessage = error.message;
 
-      window.alert("Error : " + errorMessage);
+      Swal.fire({
+        type: "error",
+        title: "Access Denied",
+        text: errorMessage,
+        footer:
+          "<a href='https://google.com' target='_blank'>Contact Support</a>"
+      });
 
       // ...
     });
@@ -48,4 +54,14 @@ function login() {
 
 function logout() {
   firebase.auth().signOut();
+  Swal.fire({
+    type: "success",
+    title: "Successfully logged out",
+    showConfirmButton: false,
+    timer: 4000
+  });
+
+  setTimeout(function() {
+    window.location = "/";
+  }, 7000);
 }

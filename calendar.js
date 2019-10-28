@@ -10,10 +10,11 @@ $(document).ready(function() {
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
+    console.log(user);
     // User is signed in.
-    alert("logged in");
   } else {
     // No user is signed in.
+    window.location = "/";
   }
 });
 
@@ -187,5 +188,14 @@ populateData();
 
 function logout() {
   firebase.auth().signOut();
-  window.location = "/";
+  Swal.fire({
+    type: "success",
+    title: "Successfully logged out",
+    showConfirmButton: false,
+    timer: 4000
+  });
+
+  setTimeout(function() {
+    window.location = "/";
+  }, 7000);
 }
